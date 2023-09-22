@@ -1,0 +1,87 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template<class T>
+class Container
+{
+private:
+	
+	vector<T> arr;
+public:
+
+	void add(T field) {
+		arr.push_back(field);
+	}
+
+
+	void Delete(T field){
+		for (int i = 0; i < arr.size(); i++) {
+			if (arr[i] == field) {
+
+				auto litr = arr.cbegin() + i;
+				arr.erase(litr);
+			}
+		}
+	}
+
+	T search(T field) {
+		for (int i = 0; i < arr.size(); i++) {
+			if (arr[i] == field) {
+				return arr[i];
+			}
+		}
+	}
+
+	void sort() {
+
+		for (int i = 0; i < arr.size(); i++) {
+			for (int j = i + 1; j < arr.size(); j++) {
+				if (arr[i] < arr[j]) {
+					auto temp = arr[i];
+
+					arr[i] = arr[j];
+					arr[j] = temp;			
+				}
+			}		
+		}
+	}
+
+	void display() {
+		for (int i = 0; i < arr.size(); i++) {
+			cout << arr[i] << " ";
+		}
+	}
+};
+
+
+int main()
+{
+	Container<int> container;
+
+	container.add(9);
+	container.add(4);
+	container.add(1);
+	container.add(3);
+	container.add(7);
+	
+
+	container.display();
+	cout << endl;
+	
+	
+	container.Delete(4);
+	
+
+	container.display();
+	cout << endl;
+
+	cout << container.search(1);
+	cout << endl;
+
+	container.sort();
+
+	container.display();
+
+}
+
